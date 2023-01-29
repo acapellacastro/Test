@@ -50,3 +50,32 @@ sat_model$coefficients
 predict(sat_model, data.frame(job = 72, pay = 54, org = 53))
 
 
+#problem 24 
+library(readxl)
+nfl <- read_excel("/Users/andreaalejandra/Downloads/nfl2011.xlsx")
+plot(nfl) 
+
+colnames(nfl) <- c("team", "off", "def","win")
+
+nfl_model <- lm(win ~ off + def, data=nfl) 
+summary(nfl_model)
+
+coef(nfl_model)
+confint(nfl_model, level = .95)
+
+install.packages(GGally)
+
+#problem 52
+
+library(readxl)
+nba <- read_excel("/Users/andreaalejandra/Downloads/nbastats.xlsx")
+plot(nba)
+
+nba_model <- lm( Win ~ FG, data = nba )
+summary(nba_model)
+colnames(nba) <- c("Team",  "Win" , "FG",   "threeP",   "FT",   "RBOff", "RBDef")
+simmons_model <- glm(Coupon ~ Card + Spending, data = simmons, family ='binomial')
+summary(simmons_model)
+
+nba_model2 <- lm(Win ~ FG + threeP + FT + RBOff + RBDef  , data = nba)
+summary(nba_model2)
